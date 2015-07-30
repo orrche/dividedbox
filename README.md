@@ -11,3 +11,11 @@ Usage
 -----
 Change the p variable to 1 if projection that can generate dxf files are desired else leave it at 0 and it will be assembled instead.
 
+
+Examples
+--------
+![alt text](https://github.com/orrche/dividedbox/master/images/box.png "Assembled box")
+![alt text](https://github.com/orrche/dividedbox/master/images/spread.png "Exploded box")
+![alt text](https://github.com/orrche/dividedbox/master/images/box.dxf "DXF file")
+
+
