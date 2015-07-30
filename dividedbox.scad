@@ -112,12 +112,12 @@ module box(width = 391, height = 55, depth=331, cutw=4, cutd = 2, material = 4.2
 		translate([-depth/2,-material, 0]) {
 			for( i = [1:cutw-1] ) {
 				translate([0,0,-width / 2 + i * (width-material)/cutw])
-				#vanecutter(depth, material + 0.1, 5,0, offset=-width/22);
+				vanecutter(depth, material + 0.1, 5,0, offset=-width/22);
 			}
 			for( i = [1:cutd-1] ) {
 				translate([ i * (depth-material)/cutd,0,width/2])
 				rotate(90,[0,1,0])
-				#vanecutter(width, material + 0.1, 5,0, offset=-width/22);
+				vanecutter(width, material + 0.1, 5,0, offset=-width/22);
 			}
 		}
 	}
