@@ -41,18 +41,20 @@ module side(width, height, cuts, sidecut = 0, material = 4.2) {
 	}
 }
 
-module box(width = 391, height = 55, depth=331, cutw=4, cutd = 2, material = 4.2) {
-	
+module box(width = 391, height = 55, depth=331, cutw=4, cutd = 2, material = 4.2, spread=0) {
+
+	translate([spread * depth/2 + spread*10,0,0])
+	rotate(spread * 90, [0,1,0])	
 	translate([-depth/2,0,width/2]) {
 		rotate(90, [0,1,0]) {
-			translate([0,0,depth-material])
+			translate([0,spread * height + spread*10,depth-material])
 				side(width,height,cutw, material = material);
 			side(width,height,cutw, material = material);
 		}
 	}
 	
 	for ( i = [1:cutw-1] ) {
-		translate([0,0, (i) * (width-material) / cutw]){
+		translate([0,spread * i * (height +10), (i) * (width-material) / cutw]){
 			difference() {
 				plywoodcube(depth, height, [0,0,0,0]);
 				translate([-depth/2 + material,-height/2, -0.01])
@@ -75,12 +77,13 @@ module box(width = 391, height = 55, depth=331, cutw=4, cutd = 2, material = 4.2
 	}
 
 	side(depth,height,cutd,sidecut=1, material = material);
-	translate([0,0,width-material])
+	translate([0,spread * cutw * (height + 10),width-material])
 		side(depth,height,cutd,sidecut=1, material = material);
 
 
+	rotate(spread * 90, [0,1,0])
 	for ( i = [1:cutd-1] ) {
-		translate([0 - depth/2 + i * (depth-material)/cutd ,0,width/2]){
+		translate([0 - depth/2 + i * (depth-material)/cutd ,spread * (i+1)*(height + 10),width/2 + spread * depth/2 + spread * 10]){
 			rotate(90,[0,1,0])
 			difference() {
 				plywoodcube(width, height, [0,0,0,0]);
@@ -91,7 +94,7 @@ module box(width = 391, height = 55, depth=331, cutw=4, cutd = 2, material = 4.2
 					rotate(90,[0,0,1])
 						vanecutter(height, 4.3,1,1, offset=-9);
 
-				for( i = [1:cutd-1] ) {
+				for( i = [1:cutw-1] ) {
 					translate([-width / 2 + i*(width - material)/cutw ,0,-0.04]) {
 						cube([material,height/2,material + 0.1]);
 					}
@@ -104,6 +107,8 @@ module box(width = 391, height = 55, depth=331, cutw=4, cutd = 2, material = 4.2
 	}
 
 
+	translate([0,-(height+10)*spread,0])
+	rotate(spread * 90, [1,0,0])
 	translate([0, -height/2 + material,width/2])
 	difference() {
 		rotate(90, [0,1,0])
@@ -124,4 +129,11 @@ module box(width = 391, height = 55, depth=331, cutw=4, cutd = 2, material = 4.2
 
 }
 
-box(width = 391, height = 55, depth=331, cutw=3, cutd=2);
+p = 0;
+if ( p == 1 ) {
+	projection() 
+		box(width = 391, height = 55, depth=331, cutw=3, cutd=3, spread=p);
+} else {
+	box(width = 391, height = 55, depth=331, cutw=3, cutd=3, spread=p);
+}
+	
