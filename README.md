@@ -14,8 +14,11 @@ Change the p variable to 1 if projection that can generate dxf files are desired
 
 Examples
 --------
-![alt text](https://github.com/orrche/dividedbox/raw/master/images/box.png "Assembled box")
-![alt text](https://github.com/orrche/dividedbox/raw/master/images/spread.png "Exploded box")
-![alt text](https://github.com/orrche/dividedbox/raw/master/images/box.dxf "DXF file")
+Assembled box
+![Assembled box](https://github.com/orrche/dividedbox/raw/master/images/box.png "Assembled box")
+Exploded box
+![Exploded box](https://github.com/orrche/dividedbox/raw/master/images/spread.png "Exploded box")
+DXF file
+![dxf file](https://github.com/orrche/dividedbox/raw/master/images/box.dxf "DXF file")
 
 
